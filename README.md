@@ -20,17 +20,22 @@ Required Python packages (listed in requirements.txt):
 ### Installing
 
 Clone this repository:
-> git clone https://github.com/ahewe001/CAP4104.git
-> cd CAP4104
+```
+git clone https://github.com/ahewe001/CAP4104.git
+cd CAP4104
+```
 
 Install dependencies:
+```
 pip install -r requirements.txt
-
-Executing
+```
+## Executing
 
 Run the web app with:
+```
 streamlit run hci_project.py
+```
 
-Authors
+## Authors
 Abigayle Hewett
 ahewe001@fiu.edu
