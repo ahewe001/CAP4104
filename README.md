@@ -1,32 +1,27 @@
-Project for CAP4104
+# Project for CAP4104
 
 This is a project for the Human-Computer Interaction Course at FIU.
 
-Description
+## Description
 
 This project is a data-driven web application developed using the Streamlit framework, designed to demonstrate key human-computer interaction (HCI) principles and usability goals.
 
-Getting Started
+## Getting Started
 
-Dependencies
+### Dependencies
 
 Python 3.8 or higher (recommended to use Python 3.9+ for full compatibility)
-
 The project uses a virtual environment (venv) for package management.
-
 Required Python packages (listed in requirements.txt):
+  streamlit
+  pandas
+  plotly
 
-streamlit
-
-pandas
-
-plotly
-
-Installing
+### Installing
 
 Clone this repository:
-git clone https://github.com/ahewe001/CAP4104.git
-cd CAP4104
+> git clone https://github.com/ahewe001/CAP4104.git
+> cd CAP4104
 
 Install dependencies:
 pip install -r requirements.txt
