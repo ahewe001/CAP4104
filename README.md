@@ -13,9 +13,9 @@ This project is a data-driven web application developed using the Streamlit fram
 - Python 3.8 or higher
 - The project uses a virtual environment (venv) for package management.
 - Required Python packages (listed in requirements.txt):
-    streamlit
-    pandas
-    plotly
+    - streamlit
+    - pandas
+    - plotly
 
 ### Installing
 
