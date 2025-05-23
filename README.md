@@ -37,5 +37,6 @@ streamlit run hci_project.py
 ```
 
 ## Authors
+
 Abigayle Hewett
-ahewe001@fiu.edu
+email: ahewe001@fiu.edu
