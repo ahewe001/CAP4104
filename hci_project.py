@@ -117,39 +117,146 @@ def main():
         st.write("Please select a task and record your experience completing it.")
 
         # For this template, we assume there's only one task, in project 3, we will have to include the actual tasks
-        selected_task = st.selectbox("Select Task", ["Task 1: Example Task"])
-        st.write("Task Description: Perform the example task in our system...")
+        selected_task = st.selectbox("Select Task", ["Task 1: Astronomy Picture of the Day", "Task 2: Kepler Space Telescope", "Task 3: Space Quiz"])
+        
+        if selected_task == "Task 1: Astronomy Picture of the Day":
+            st.write("""
+                ### Task Description: Astronomy Picture of the Day (APOD)
 
-        # Track success, completion time, etc.
-        start_button = st.button("Start Task Timer")
-        if start_button:
-            st.session_state["start_time"] = time.time()
+                Navigate through the app to find the Astronomy Picture of the Day (APOD).  
+                - First, view yesterday’s APOD.  
+                - Then, find and view the APOD from your birthday last year.
+                """)
 
-        stop_button = st.button("Stop Task Timer")
-        if stop_button and "start_time" in st.session_state:
-            duration = time.time() - st.session_state["start_time"]
-            st.session_state["task_duration"] = duration
+            # Track success, completion time, etc.
+            start_button = st.button("Start Task Timer")
+            if start_button:
+                st.session_state["start_time"] = time.time()
 
-        success = st.radio("Was the task completed successfully?", ["Yes", "No", "Partial"])
-        notes = st.text_area("Observer Notes")
+            stop_button = st.button("Stop Task Timer")
+            if stop_button and "start_time" in st.session_state:
+                duration = time.time() - st.session_state["start_time"]
+                st.session_state["task_duration"] = duration
 
-        if st.button("Save Task Results"):
-            duration_val = st.session_state.get("task_duration", None)
+            success = st.radio("Was the task completed successfully?", ["Yes", "No", "Partial"])
+            
+            notes = st.text_area("Observer Notes")
 
-            data_dict = {
-                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "task_name": selected_task,
-                "success": success,
-                "duration_seconds": duration_val if duration_val else "",
-                "notes": notes
-            }
-            save_to_csv(data_dict, TASK_CSV)
+            if st.button("Save Task Results"):
+                duration_val = st.session_state.get("task_duration", None)
 
-            # Reset any stored time in session_state if you'd like
-            if "start_time" in st.session_state:
-                del st.session_state["start_time"]
-            if "task_duration" in st.session_state:
-                del st.session_state["task_duration"]
+                data_dict = {
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "task_name": selected_task,
+                    "success": success,
+                    "duration_seconds": duration_val if duration_val else "",
+                    "notes": notes
+                }
+                save_to_csv(data_dict, TASK_CSV)
+
+                # Reset any stored time in session_state if you'd like
+                if "start_time" in st.session_state:
+                    del st.session_state["start_time"]
+                if "task_duration" in st.session_state:
+                    del st.session_state["task_duration"]
+        elif selected_task == "Task 2: Kepler Space Telescope":
+            st.write("""
+                ### Task Description: Kepler Space Telescope Exploration
+
+                Navigate to the Kepler Space Telescope section and explore the interactive charts showing planet discoveries.
+
+                - Approximately how many planets has Kepler discovered?
+                - Use the line chart to observe any trends over time. Do you notice any peaks or drops in discoveries?
+                - Are there any notable similarities between Kepler’s line chart and the overall planet discovery chart (across all telescopes)?
+                - Do the charts help you understand Kepler's impact on space exploration? Why or why not?
+                """)
+
+            # Start/stop task timer
+            start_button = st.button("Start Task Timer")
+            if start_button:
+                st.session_state["start_time"] = time.time()
+
+            stop_button = st.button("Stop Task Timer")
+            if stop_button and "start_time" in st.session_state:
+                duration = time.time() - st.session_state["start_time"]
+                st.session_state["task_duration"] = duration
+                st.success(f"Task completed in {duration:.2f} seconds.")
+
+            # User response fields
+            success = st.radio("Was the task completed successfully?", ["Yes", "No", "Partially"])
+            planets_discovered = st.text_area("Approximately how many planets did Kepler discover?")
+            chart_observation = st.text_area("What trends or patterns did you notice in the line chart?")
+            comparison_observation = st.text_area("Did you observe any similarities between Kepler’s chart and the overall discovery chart?")
+            impact_reflection = st.text_area("Did the charts help you understand Kepler’s impact? Why or why not?")
+
+            notes = st.text_area("Observer Notes")
+
+            if st.button("Save Task Results"):
+                duration_val = st.session_state.get("task_duration", None)
+
+                data_dict = {
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "task_name": selected_task,
+                    "success": success,
+                    "duration_seconds": duration_val if duration_val else "",
+                    "planets_discovered": planets_discovered, 
+                    "chart_observation": chart_observation,
+                    "comparison_observation": comparison_observation,
+                    "impact_reflection": impact_reflection,
+                    "notes": notes
+                }
+                save_to_csv(data_dict, TASK_CSV)
+
+                # Reset any stored time in session_state if you'd like
+                if "start_time" in st.session_state:
+                    del st.session_state["start_time"]
+                if "task_duration" in st.session_state:
+                    del st.session_state["task_duration"]
+        else:
+            st.write("""
+                ### Task Description: Space Quiz
+
+                Navigate to the Space Quiz section of the app.  
+                - Enter your name.  
+                - Complete all the quiz questions.  
+                - View your final score.
+
+                What score did you get?
+                """)
+            # Track success, completion time, etc.
+            start_button = st.button("Start Task Timer")
+            if start_button:
+                st.session_state["start_time"] = time.time()
+
+            stop_button = st.button("Stop Task Timer")
+            if stop_button and "start_time" in st.session_state:
+                duration = time.time() - st.session_state["start_time"]
+                st.session_state["task_duration"] = duration
+
+            success = st.radio("Was the task completed successfully?", ["Yes", "No", "Partial"])
+            score = st.text_area("Write your score")
+            quiz_feedback = st.text_area("Was the quiz easy to navigate and understand?")
+            notes = st.text_area("Observer Notes")
+
+            if st.button("Save Task Results"):
+                duration_val = st.session_state.get("task_duration", None)
+
+                data_dict = {
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                    "task_name": selected_task,
+                    "success": success,
+                    "duration_seconds": duration_val if duration_val else "",
+                    "score": score,   
+                    "quiz_feedback": quiz_feedback, 
+                    "notes": notes
+                }
+                save_to_csv(data_dict, TASK_CSV)
+
+                # Reset any stored time in session_state if you'd like
+                if "start_time" in st.session_state:
+                    del st.session_state["start_time"]
+                if "task_duration" in st.session_state:
+                    del st.session_state["task_duration"]
 
     with exit_tab:
         st.header("Exit Questionnaire")
